@@ -1,0 +1,12 @@
+<h1>Productos</h1>
+<div class="d-grid gap-2">
+    <a class="btn btn-primary" [routerLink]="['/adicionar-producto']">Agregar</a>    
+  </div>
+<ul class="list-group">
+    @for (item of productos; track $index) {
+        <li class="list-group-item">
+            <img [src]="item.thumbnail" alt="" srcset="" class="img-thumbnail">            
+            {{item.description}}
+        </li>
+    }
+  </ul>

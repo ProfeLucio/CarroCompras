@@ -18,6 +18,6 @@ export class ProductService {
     return this.http.get(environment.urlServidor + 'products/' + id);
   }
   public create(data: any) {
-    return this.http.post(environment.urlServidor + 'products', data);
+    return this.http.post(environment.urlServidor + 'products/add', data);
   }
 }

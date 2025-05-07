@@ -1,26 +1,28 @@
 <div class="container mt-5">
-    <form>
-        
-        <div class="mb-3">
+  <p>Form Status: {{ productForm.status }}</p>
+  <form [formGroup]="productForm">
+      <div class="mb-3">
+          <label for="productTitle" class="form-label">Título</label>
+          <input type="text" class="form-control" id="productTitle" placeholder="Ingrese el título del producto" formControlName="title">
+      </div>
+      @if(productForm.get('title')?.invalid && (productForm.get('title')?.dirty || productForm.get('title')?.touched)){
+        <div  class="text-danger">
+          El título es requerido.
+        </div>  
+      }
+      <div class="mb-3">
           <label for="productDescription" class="form-label">Descripción</label>
-          <textarea class="form-control" id="productDescription" rows="3" placeholder="Ingrese la descripción del producto"></textarea>
-        </div>
-        <div class="mb-3">
+          <textarea class="form-control" id="productDescription" rows="3" placeholder="Ingrese la descripción del producto" formControlName="description"></textarea>
+      </div>
+      <div class="mb-3">
+          <label for="productCategory" class="form-label">Categoría</label>
+          <input type="text" class="form-control" id="productCategory" placeholder="Ingrese la categoría del producto" formControlName="category">
+      </div>
+      <div class="mb-3">
           <label for="productPrice" class="form-label">Precio</label>
-          <input type="number" class="form-control" id="productPrice" placeholder="Ingrese el precio del producto">
-        </div>
-        <div class="mb-3">
-          <label for="productImages" class="form-label">Imágenes (separadas por coma)</label>
-          <input type="text" class="form-control" id="productImages" placeholder="Ingrese las URLs de las imágenes separadas por coma">
-        </div>
-        <div class="mb-3">
-          <label for="productStock" class="form-label">Stock</label>
-          <input type="number" class="form-control" id="productStock" placeholder="Ingrese el stock disponible">
-        </div>
-        <div class="mb-3">
-          <label for="productThumbnail" class="form-label">Miniatura (URL)</label>
-          <input type="text" class="form-control" id="productThumbnail" placeholder="Ingrese la URL de la miniatura">
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar Producto</button>
-      </form>
+          <input type="number" class="form-control" id="productPrice" placeholder="Ingrese el precio del producto" formControlName="price">
+      </div>
+
+      <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary" (click)="onSave()">Guardar Producto</button>
+  </form>
 </div>
